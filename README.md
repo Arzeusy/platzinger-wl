@@ -299,3 +299,27 @@ En su .html:
   <small>{{ contact.email }}</small> 
 </div>
 ```
+
+## Electron
+
+Electron es un framework muy potente que nos permite encapsular nuestras aplicaciones de Angular en wrappers nativos para sistemas operativos de escritorio como Windows, MacOS o Linux. Incluso podremos generar los paquetes de instalación, también nativos, para cada sistema operativo con otra herramienta llamada electron-packager.
+
+Electron debe ser instalado mediante npm:
+
+```
+npm install electron --save-exact
+```
+
+Una vez instalado el paquete, tendremos que crear un archivo llamado `main.js` en el directorio raíz de nuestra aplicación y referenciarlo en el archivo package.json de nuestra app con el atributo ““main””. En este archivo debemos importar los objetos app y BrowserWindow, además de crear los valores de configuración y la función createWindow(), necesarios para generar la aplicación.
+
+Definimos los manejadores de los eventos ‘ready’, ‘window-close-all’ y ‘activate’ que enlazarán a la función createWindow() y a las instrucciones necesarias para liberar la memoria de los recursos reservados por la aplicación cuando ésta haya sido cerrada o reactivar si se ha minimizado, respectivamente.
+
+En el sistema operativo MacOS hay una particularidad, y es que al cerrar la ventana de una aplicación, ésta continúa ejecutándose en segundo plano, por lo que es necesario tener en cuenta esta salvedad en nuestro código para que la aplicación tenga un comportamiento esperado en cada uno de los sistemas operativos.
+
+Finalmente generamos el paquete de producción de nuestra aplicación con el comando de Angular CLI: `ng build --prod`, generando la carpeta dist/ con los archivos y recursos optimizados y comprimidos para el ambiente de producción y por último el comando electron .
+
+Para generar el paquete de instalación debemos ejecutar:
+
+`electron-packager ./ <nombre-de-la-app> --platform=<plataforma> --icon <ubicacion-icono>`
+
+El parámetro <plataforma> puede tomar los valores: win32 (para SO Windows) o darwin (para MacOS).
