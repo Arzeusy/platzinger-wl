@@ -49,7 +49,9 @@
   <div class="modal-body">
     <div>
       <b>Ingrese el email de tu amigo</b>
-      <input type="email" class="form-control"placeholder="Email" [(ngModel)]="friendEmail" (keyup.enter)="sendRequest()">
+      <input type="email" class="form-control" placeholder="Email" [(ngModel)]="friendEmail" (keyup.enter)="sendRequest()">
+      <br />
+      <input type="text" class="form-control" placeholder="Mensaje a destinatario" [(ngModel)]="friendMessage">
     </div>
   </div>
   <div class="modal-footer">

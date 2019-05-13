@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   friends: User[];
   query: string = '';
   friendEmail: string = '';
+  friendMessage: string = '';
 
   constructor(
     private userService: UserService,
@@ -64,8 +65,8 @@ export class HomeComponent implements OnInit {
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       
-    }, (reason) => {
-      
+    }, (err) => {
+      console.log(err);
     });
   }
 
@@ -74,6 +75,7 @@ export class HomeComponent implements OnInit {
       timestamp: Date.now(),
       receiver_email: this.friendEmail,
       sender: this.user.uid,
+      message: this.friendMessage,
       status: 'pending'
     }
 
